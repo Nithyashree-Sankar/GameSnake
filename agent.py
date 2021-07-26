@@ -1,21 +1,21 @@
 import torch
 import random
 import numpy as np
-from collections import deque
+from collections import deque #ds to store memory
 from snnaakee import SnakeGame, Direction, Point
 from model import Linear_QNet,QTrainer
 from helper import plot
 #file_name = None
-max_memory = 100000
+max_memory = 100000#no of items to be stored
 batch_size = 1000
 lr = 0.001
 
 class Agent:
     def __init__(self):
         self.n_games = 0
-        self.epsilon = 0
-        self.gamma = 0.9
-        self.memory = deque(maxlen=max_memory)
+        self.epsilon = 0 #randomness
+        self.gamma = 0.9 #discount
+        self.memory = deque(maxlen=max_memory) #popleft
         self.model = Linear_QNet(11,128,128,3)
         #self.model.load_state_dict(torch.load(file_name))
         #self.model.eval()
